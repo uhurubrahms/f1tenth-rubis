@@ -1,0 +1,8 @@
+prefix=/home/tigerlily/rubis/install
+
+Name: bagpractice
+Description: Description of bagpractice
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/tigerlily/rubis/install/lib 
+Requires: 

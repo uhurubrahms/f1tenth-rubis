@@ -1,0 +1,6 @@
+/home/tigerlily/rubis/install/_setup_util.py
+/home/tigerlily/rubis/install/env.sh
+/home/tigerlily/rubis/install/setup.bash
+/home/tigerlily/rubis/install/setup.sh
+/home/tigerlily/rubis/install/setup.zsh
+/home/tigerlily/rubis/install/.rosinstall
