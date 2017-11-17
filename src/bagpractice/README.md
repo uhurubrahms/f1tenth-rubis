@@ -1,2 +1,1 @@
-Practice package
--Reading data from a bag file
+Practice: Read data from a bag file, Implemented in C++
