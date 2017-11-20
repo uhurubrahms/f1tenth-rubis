@@ -1,4 +1,6 @@
-mport rospy
+#!/usr/bin/env python
+
+import rospy
 from drive_straight.msg import drive_values
 from drive_straight.msg import drive_param
 from std_msgs.msg import Bool

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import rospy
 from race.msg import drive_param
 import curses
