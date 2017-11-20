@@ -6,10 +6,8 @@ from drive_straight.msg import pid_input
 # desired_trajectory = 1
 # vel = 30
 
-desired_trajectory = .5
+desired_trajectory = 0.5
 vel = 5
-
-
 
 pub = rospy.Publisher('error', pid_input, queue_size=10)
 

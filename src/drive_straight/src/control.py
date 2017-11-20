@@ -1,6 +1,6 @@
-mport rospy
-from race.msg import drive_param
-from race.msg import pid_input
+import rospy
+from drive_straight.msg import drive_param
+from drive_straight.msg import pid_input
 
 kp = 14.0
 kd = 0.09
@@ -20,7 +20,12 @@ def control(data):
 	# 1. Scale the error
 	# 2. Apply the PID equation on error
 	# 3. Make sure the error is within bounds
- 	
+ 	pid_error = data.pid_error
+        error_p = pid_error * kp 
+        error_d = kd * (prev_error - pid_error)
+        angle = error_p + error_d
+        
+        prev_error = pid_error 
 
 	## END
 
