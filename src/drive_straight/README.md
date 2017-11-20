@@ -3,3 +3,4 @@
 >> roscd drive_straight/src </br>
 >> chmod +x dist_finder.py
 
+- Don't forget to include '#!/usr/bin/env python' line at the beginning since the script is executed by shell, not python.
