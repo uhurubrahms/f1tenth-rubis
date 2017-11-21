@@ -27,23 +27,35 @@ def control(data):
         error_d = kd * (prev_error - pid_error)
         angle = error_p + error_d
         
+
+        print("pid_error: " + str(pid_error) + "/ prev - curr err: " + str(prev_error-pid_error))
+
+ 
         prev_error = pid_error 
 
 	## END
+        
+        # What's the case when angle is so big such as 800 ???
+        # ==> when pid_error is big (58.47)
+        # ==> when data.ranges[380] (50 degrees ray) = 65.53 (the same value as 0 degree ray distance) 
+
 
 	msg = drive_param();
 	msg.velocity = vel_input	
 	msg.angle = angle
+        
+        print("--- Adjusted angle: "+ str(angle))
+
 	pub.publish(msg)
 
 if __name__ == '__main__':
-	global kp
-	global kd
-	global vel_input
+	#global kp
+	#global kd
+	#global vel_input
 	print("Listening to error for PID")
-	kp = input("Enter Kp Value: ")
-	kd = input("Enter Kd Value: ")
-	vel_input = input("Enter Velocity: ")
+	#kp = input("Enter Kp Value: ")
+	#kd = input("Enter Kd Value: ")
+	#vel_input = input("Enter Velocity: ")
 	rospy.init_node('pid_controller', anonymous=True)
 	rospy.Subscriber("error", pid_input, control)
         rospy.spin()

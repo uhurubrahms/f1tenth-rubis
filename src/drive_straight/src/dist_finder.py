@@ -47,11 +47,13 @@ def getRange(data, theta):
   dist_angle = (3*math.pi/4 + car_axis_theta) / data.angle_increment # float type index
   dist_angle = int(dist_angle) # Make it index
   detected_dist = data.ranges[dist_angle]
-  
-  print("--- theta was: "+ str(theta))
-  print("--- radians(theta): "+ str(math.radians(theta)) + " / car_axis_theta: " +str(car_axis_theta))
-  print("--- ranges[" + str(dist_angle) + "] = " + str(detected_dist)) 
+ 
 
+
+  # ==== Print values for checking ==== 
+  # print("--- theta was: "+ str(theta))
+  # print("--- radians(theta): "+ str(math.radians(theta)) + " / car_axis_theta: " +str(car_axis_theta))
+  print("theta: "+str(theta) + ", ranges[" + str(dist_angle) + "] = " + str(detected_dist)) 
   return detected_dist
 
 
@@ -82,7 +84,7 @@ def callback(data):
 
   error = CD - desired_trajectory
   
-  print("--- error: " + str(error))
+  # print("--- error: " + str(error))
 
   # end
   
