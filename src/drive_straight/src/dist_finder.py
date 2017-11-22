@@ -53,8 +53,12 @@ def getRange(data, theta):
   # ==== Print values for checking ==== 
   # print("--- theta was: "+ str(theta))
   # print("--- radians(theta): "+ str(math.radians(theta)) + " / car_axis_theta: " +str(car_axis_theta))
-  print("theta: "+str(theta) + ", ranges[" + str(dist_angle) + "] = " + str(detected_dist)) 
-  return detected_dist
+  if(detected_dist < data.range_min or detected_dist > data.range_max):
+    # Should discard these weird values (especially 65.xxx) but HOW?
+    print("theta: "+str(theta) + ", ranges[" + str(dist_angle) + "] = " + str(detected_dist)) 
+  # Do not return detected_dist
+  else:
+    return detected_dist
 
 
 
@@ -76,6 +80,11 @@ def callback(data):
   # AB = distance of the car from the wall
   # CD = adjusted distance of the car from the wall (due to its high speed)
   # AC = (distance) car moved forward slightly in the same direction due to its running speed
+  
+  if a is None or b is None:
+  # If one of a or b has a value that is out of the lidar detection range,
+  # do not calculate anything. Don't do PID control as a result.
+    return
 
   alpha = math.atan2(a * math.cos(swing) - b, a * math.sin(swing))
   AB = b * math.cos(alpha)
@@ -84,7 +93,8 @@ def callback(data):
 
   error = CD - desired_trajectory
   
-  # print("--- error: " + str(error))
+  print("detected_dist a: " + str(a) + " / b: " + str(b))
+  # weird error value: 58
 
   # end
   
