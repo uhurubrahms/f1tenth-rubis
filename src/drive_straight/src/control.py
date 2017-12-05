@@ -4,6 +4,7 @@ import rospy
 from drive_straight.msg import drive_param
 from drive_straight.msg import pid_input
 
+# All needs to be modified later.
 kp = 14.0
 kd = 0.09
 servo_offset = 18.5	# zero correction offset in case servo is misaligned. 

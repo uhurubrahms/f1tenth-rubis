@@ -6,10 +6,10 @@ import math
 from sensor_msgs.msg import LaserScan
 from drive_straight.msg import pid_input
 
-# desired_trajectory = 1
+# DESIRED_TRAJECTORY = 1
 # vel = 30
 
-desired_trajectory = 0.5
+DESIRED_TRAJECTORY = 1.2 # 301 Hallway width => 2.4m
 vel = 5
 
 pub = rospy.Publisher('error', pid_input, queue_size=10)
@@ -49,10 +49,6 @@ def getRange(data, theta):
   detected_dist = data.ranges[dist_angle]
  
 
-
-  # ==== Print values for checking ==== 
-  # print("--- theta was: "+ str(theta))
-  # print("--- radians(theta): "+ str(math.radians(theta)) + " / car_axis_theta: " +str(car_axis_theta))
   if(detected_dist < data.range_min or detected_dist > data.range_max):
     # Should discard these weird values (especially 65.xxx) but HOW?
     print("theta: "+str(theta) + ", ranges[" + str(dist_angle) + "] = " + str(detected_dist)) 
@@ -79,7 +75,7 @@ def callback(data):
   # alpha = orientation of the car with respect to the wall.
   # AB = distance of the car from the wall
   # CD = adjusted distance of the car from the wall (due to its high speed)
-  # AC = (distance) car moved forward slightly in the same direction due to its running speed
+  # AC = (target distance) car moved forward slightly in the same direction due to its running speed
   
   if a is None or b is None:
   # If one of a or b has a value that is out of the lidar detection range,
@@ -91,9 +87,9 @@ def callback(data):
   AC = 1 # Can be changed
   CD = AB + AC * math.sin(alpha)
 
-  error = CD - desired_trajectory
-  
-  print("detected_dist a: " + str(a) + " / b: " + str(b))
+  error = CD - DESIRED_TRAJECTORY  
+  # print("detected_dist a: " + str(a) + " / b: " + str(b))
+  print("error(dist): "+str(error))
   # weird error value: 58
 
   # end
