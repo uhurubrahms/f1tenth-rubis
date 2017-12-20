@@ -49,9 +49,12 @@ def getRange(data, theta):
   detected_dist = data.ranges[dist_angle]
  
 
-  if(detected_dist < data.range_min or detected_dist > data.range_max):
+  if(detected_dist < data.range_min):
+    return data.range_min
+  elif detected_dist > data.range_max:
+    return data.range_max
     # Should discard these weird values (especially 65.xxx) but HOW?
-    print("theta: "+str(theta) + ", ranges[" + str(dist_angle) + "] = " + str(detected_dist)) 
+    #print("theta: "+str(theta) + ", ranges[" + str(dist_angle) + "] = " + str(detected_dist)) 
   # Do not return detected_dist
   else:
     return detected_dist
